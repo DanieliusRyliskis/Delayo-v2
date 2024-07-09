@@ -5,5 +5,3 @@ const app = express();
 app.listen(5000, () => {
   console.log("Server started on port 5000");
 });
-
-// For single page applications you only need the html for the first request
