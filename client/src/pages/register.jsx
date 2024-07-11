@@ -1,10 +1,20 @@
-import { useState } from "react";
-import PasswordSVG from "../assets/passwordSVG";
+import { useState, useEffect } from "react";
+import HidePassword from "../assets/hidePassword";
+import ShowPassword from "../assets/showPassword";
 
 function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    if (show) {
+      document.getElementById("password").type = "text";
+    } else {
+      document.getElementById("password").type = "password";
+    }
+  }, [show]);
 
   // This callback function does not cause a re-render
   const removeLabel = function (e) {
@@ -79,25 +89,30 @@ function Register() {
               id="password"
               className="ml-2 w-[90%] h-full rounded-lg focus:outline-none"
             />
-            <div className="absolute top-2/4 -translate-y-2/4 right-1 cursor-pointer">
-              <PasswordSVG />
+            <div
+              className="absolute top-2/4 -translate-y-2/4 right-1 cursor-pointer"
+              onClick={() => setShow(!show)}
+            >
+              {show ? <HidePassword /> : <ShowPassword />}
             </div>
           </div>
           <div className="w-[min(80%,_25rem)] mx-auto mt-7 flex items-center">
             <input
               type="checkbox"
               id="conditions"
-              className="w-5 h-5 accent-green-600"
+              className="w-5 h-5 accent-green-600 cursor-pointer"
             />
             <label
               htmlFor="conditions"
               className="relative pl-1 inline-block text-sm"
             >
               I agree with the{" "}
-              <span className="text-blue-600">Terms & Conditions</span>
+              <a href="#" className="text-blue-600 hover:underline">
+                Terms & Conditions
+              </a>
             </label>
           </div>
-          <button className="bg-primary rounded-md mx-auto block w-[min(80%,_25rem)] py-2 font-semibold mt-4">
+          <button className="bg-primary rounded-md mx-auto block w-[min(80%,_25rem)] py-2 font-semibold mt-4 hover:bg-[#FFFA88]">
             Sign Up
           </button>
         </form>

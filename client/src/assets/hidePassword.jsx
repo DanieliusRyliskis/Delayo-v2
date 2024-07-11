@@ -1,4 +1,4 @@
-function PasswordSVG() {
+function HidePassword() {
   return (
     <svg
       width="24"
@@ -17,4 +17,4 @@ function PasswordSVG() {
   );
 }
 
-export default PasswordSVG;
+export default HidePassword;
