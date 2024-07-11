@@ -1,6 +1,23 @@
+import { useState } from "react";
 import PasswordSVG from "../assets/passwordSVG";
 
 function Register() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // This callback function does not cause a re-render
+  const removeLabel = function (e) {
+    if (e.target.value === "") {
+      e.target.previousElementSibling.classList.add("invisible");
+    }
+  };
+  const addLabel = function (e) {
+    if (e.target.value === "") {
+      e.target.previousElementSibling.classList.remove("invisible");
+    }
+  };
+
   return (
     <div>
       <div>
@@ -12,45 +29,57 @@ function Register() {
           <div className="border-gray-300 border-2 rounded-lg w-[min(80%,_25rem)] mx-auto relative h-9 overflow-hidden shadow-md mt-7">
             <label
               htmlFor="username"
-              className="absolute left-1 top-2/4 -translate-y-2/4 text-gray-500"
+              className="absolute left-1 top-2/4 -translate-y-2/4 text-gray-500 cursor-text"
             >
               Username
             </label>
             <input
+              onFocus={removeLabel}
+              onBlur={addLabel}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               type="text"
               name="username"
               id="username"
-              className="w-full h-full rounded-lg"
+              className="ml-2 w-[90%] h-full rounded-lg focus:outline-none"
             />
           </div>
           <div className="border-gray-300 border-2 rounded-lg w-[min(80%,_25rem)] mx-auto relative h-9 overflow-hidden shadow-md mt-7">
             <label
               htmlFor="email"
-              className="absolute left-1 top-2/4 -translate-y-2/4 text-gray-500"
+              className="absolute left-1 top-2/4 -translate-y-2/4 text-gray-500 cursor-text"
             >
               Email
             </label>
             <input
+              onFocus={removeLabel}
+              onBlur={addLabel}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               type="email"
               name="email"
               id="email"
-              className="w-full h-full rounded-lg"
+              className="ml-2 w-[90%] h-full rounded-lg focus:outline-none"
             />
           </div>
           <div className="border-gray-300 border-2 rounded-lg w-[min(80%,_25rem)] mx-auto relative h-9 overflow-hidden shadow-md mt-7">
             <label
               htmlFor="password"
-              className="absolute left-1 top-2/4 -translate-y-2/4 text-gray-500"
+              className="absolute left-1 top-2/4 -translate-y-2/4 text-gray-500 cursor-text"
             >
               Password
             </label>
             <input
+              onFocus={removeLabel}
+              onBlur={addLabel}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               type="password"
               name="password"
               id="password"
-              className="w-full h-full rounded-lg"
+              className="ml-2 w-[90%] h-full rounded-lg focus:outline-none"
             />
-            <div className="absolute top-2/4 -translate-y-2/4 right-1">
+            <div className="absolute top-2/4 -translate-y-2/4 right-1 cursor-pointer">
               <PasswordSVG />
             </div>
           </div>
