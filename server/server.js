@@ -1,9 +1,19 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const app = express();
+require("dotenv").config();
 
-// Server will be running on port 5000 and the client on port 3000 because React by default runs on port 3000
-app.listen(5000, () => {
-  console.log("Server started on port 5000");
+mongoose
+  .connect(process.env.dbURI)
+  .then((result) => {
+    app.listen(5000);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+app.post("/register", (req, res) => {
+  console.log("request received");
 });
 
 // Check if the user exists in the database
