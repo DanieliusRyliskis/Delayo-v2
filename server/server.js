@@ -5,3 +5,13 @@ const app = express();
 app.listen(5000, () => {
   console.log("Server started on port 5000");
 });
+
+// Check if the user exists in the database
+// const existingUser = await collection.findOne({data.name})
+
+// Hashing the password
+// const hashedPassword = await bcrypt.hash(data.password, saltRounds)
+// data.password = hashedPassword
+
+// Comparing passwords
+// const isPasswordMatch = await bcrypt.compare(req.body.password, check.password)

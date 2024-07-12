@@ -52,6 +52,7 @@ function Register() {
               name="username"
               id="username"
               className="ml-2 w-[90%] h-full rounded-lg focus:outline-none"
+              required
             />
           </div>
           <div className="border-gray-300 border-2 rounded-lg w-[min(80%,_25rem)] mx-auto relative h-9 overflow-hidden shadow-md mt-7">
@@ -70,6 +71,7 @@ function Register() {
               name="email"
               id="email"
               className="ml-2 w-[90%] h-full rounded-lg focus:outline-none"
+              required
             />
           </div>
           <div className="border-gray-300 border-2 rounded-lg w-[min(80%,_25rem)] mx-auto relative h-9 overflow-hidden shadow-md mt-7">
@@ -88,6 +90,7 @@ function Register() {
               name="password"
               id="password"
               className="ml-2 w-[90%] h-full rounded-lg focus:outline-none"
+              required
             />
             <div
               className="absolute top-2/4 -translate-y-2/4 right-1 cursor-pointer"
@@ -101,6 +104,7 @@ function Register() {
               type="checkbox"
               id="conditions"
               className="w-5 h-5 accent-green-600 cursor-pointer"
+              required
             />
             <label
               htmlFor="conditions"
