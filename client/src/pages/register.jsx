@@ -34,7 +34,7 @@ function Register() {
         <h1 className="text-center font-bold text-xl mt-20 mb-14 sm:mt-24 lg:mt-28 2xl:mt-32">
           Register
         </h1>
-        <form action="http://localhost:5000/register" method="post">
+        <form action="http://localhost:5000/signup" method="post">
           {/* It is essential to add space in min(x,_y) */}
           <div className="border-gray-300 border-2 rounded-lg w-[min(80%,_25rem)] mx-auto relative h-9 overflow-hidden shadow-md mt-7">
             <label

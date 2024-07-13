@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+const User = require("./models/user");
+const bcrypt = require("bcrypt");
 require("dotenv").config();
 
 mongoose
@@ -12,16 +14,17 @@ mongoose
     console.log(err);
   });
 
-app.post("/register", (req, res) => {
-  console.log("request received");
+app.use(express.urlencoded({ extended: true }));
+
+app.post("/signup", (req, res) => {
+  const saltRounds = 9;
+  bcrypt.hash(req.body.password, saltRounds).then((result) => {
+    req.body.password = result;
+    const user = new User(req.body);
+    user.save().then(() => {
+      console.log("Saved");
+      // Redirect to the client's page
+      // res.redirect("/home");
+    });
+  });
 });
-
-// Check if the user exists in the database
-// const existingUser = await collection.findOne({data.name})
-
-// Hashing the password
-// const hashedPassword = await bcrypt.hash(data.password, saltRounds)
-// data.password = hashedPassword
-
-// Comparing passwords
-// const isPasswordMatch = await bcrypt.compare(req.body.password, check.password)
