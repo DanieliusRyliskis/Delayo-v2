@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import HidePassword from "../assets/hidePassword";
 import ShowPassword from "../assets/showPassword";
+import Warning from "../components/warning";
 
 function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [checked, setChecked] = useState(false);
   const [show, setShow] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (show) {
@@ -27,6 +31,33 @@ function Register() {
       e.target.previousElementSibling.classList.remove("invisible");
     }
   };
+  const postRequest = function (e) {
+    e.preventDefault();
+    const form = { username, email, password, checked };
+    if (form.username === "" || form.username === " ") {
+      document.querySelector("h1").style.marginBottom = "2rem";
+      setErrorMessage("You must provide a username.");
+      setError(true);
+    } else if (form.email === "" || form.email === " ") {
+      document.querySelector("h1").style.marginBottom = "2rem";
+      setErrorMessage("You must provide an email.");
+      setError(true);
+    } else if (form.password === "" || form.password === " ") {
+      document.querySelector("h1").style.marginBottom = "2rem";
+      setErrorMessage("You must provide a password.");
+      setError(true);
+    } else if (!form.checked) {
+      document.querySelector("h1").style.marginBottom = "2rem";
+      setErrorMessage("Please agree to the terms and conditions.");
+      setError(true);
+    } else {
+      fetch("/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+    }
+  };
 
   return (
     <div>
@@ -34,9 +65,10 @@ function Register() {
         <h1 className="text-center font-bold text-xl mt-20 mb-14 sm:mt-24 lg:mt-28 2xl:mt-32">
           Register
         </h1>
-        <form action="http://localhost:5000/signup" method="post">
+        {error ? <Warning err={errorMessage} /> : null}
+        <form>
           {/* It is essential to add space in min(x,_y) */}
-          <div className="border-gray-300 border-2 rounded-lg w-[min(80%,_25rem)] mx-auto relative h-9 overflow-hidden shadow-md mt-7">
+          <div className="border-gray-300 border-2 rounded-lg w-[min(80%,_25rem)] mx-auto relative h-9 overflow-hidden shadow-md mt-4">
             <label
               htmlFor="username"
               className="absolute left-1 top-2/4 -translate-y-2/4 text-gray-500 cursor-text"
@@ -105,6 +137,7 @@ function Register() {
               id="conditions"
               className="w-5 h-5 accent-green-600 cursor-pointer"
               required
+              onClick={() => setChecked(!checked)}
             />
             <label
               htmlFor="conditions"
@@ -116,7 +149,10 @@ function Register() {
               </a>
             </label>
           </div>
-          <button className="bg-primary rounded-md mx-auto block w-[min(80%,_25rem)] py-2 font-semibold mt-4 hover:bg-[#FFFA88]">
+          <button
+            onClick={postRequest}
+            className="bg-primary rounded-md mx-auto block w-[min(80%,_25rem)] py-2 font-semibold mt-4 hover:bg-[#FFFA88]"
+          >
             Sign Up
           </button>
         </form>

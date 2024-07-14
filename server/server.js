@@ -19,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.post("/signup", async (req, res) => {
   const usernameFound = await User.findOne({ username: req.body.username });
   const emailFound = await User.findOne({ email: req.body.email });
+  // Throw separate errors
   if (usernameFound || emailFound) {
   } else {
     const saltRounds = 9;
