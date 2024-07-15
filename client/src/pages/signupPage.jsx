@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import HidePassword from "../assets/hidePassword";
 import ShowPassword from "../assets/showPassword";
 import Warning from "../components/warning";
+import { useNavigate } from "react-router-dom";
 
-function Register() {
+function SignupPage() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -11,6 +12,7 @@ function Register() {
   const [show, setShow] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (show) {
@@ -31,7 +33,7 @@ function Register() {
       e.target.previousElementSibling.classList.remove("invisible");
     }
   };
-  const postRequest = function (e) {
+  const submit = function (e) {
     e.preventDefault();
     const form = { username, email, password, checked };
     if (form.username === "" || form.username === " ") {
@@ -51,11 +53,25 @@ function Register() {
       setErrorMessage("Please agree to the terms and conditions.");
       setError(true);
     } else {
-      fetch("/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+      const postRequest = async () => {
+        try {
+          const res = await fetch("http://localhost:5000/signup", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(form),
+          });
+          if (!res.ok) {
+            const data = await res.json();
+            setErrorMessage(data.error);
+            setError(true);
+          } else if (res.ok) {
+            navigate("/home");
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      postRequest();
     }
   };
 
@@ -150,7 +166,7 @@ function Register() {
             </label>
           </div>
           <button
-            onClick={postRequest}
+            onClick={submit}
             className="bg-primary rounded-md mx-auto block w-[min(80%,_25rem)] py-2 font-semibold mt-4 hover:bg-[#FFFA88]"
           >
             Sign Up
@@ -167,4 +183,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default SignupPage;

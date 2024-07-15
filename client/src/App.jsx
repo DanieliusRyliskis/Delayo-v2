@@ -1,12 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Register from "./pages/register";
+import SignupPage from "./pages/signupPage";
+import TaskPage from "./pages/taskPage";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route index element={<Register />} />
+          <Route index element={<SignupPage />} />
+          <Route path="/home" element={<TaskPage />} />
         </Routes>
       </BrowserRouter>
     </div>

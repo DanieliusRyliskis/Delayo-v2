@@ -3,7 +3,10 @@ const mongoose = require("mongoose");
 const app = express();
 const User = require("./models/user");
 const bcrypt = require("bcrypt");
+const cors = require("cors");
 require("dotenv").config();
+
+app.use(cors());
 
 mongoose
   .connect(process.env.dbURI)
@@ -14,20 +17,22 @@ mongoose
     console.log(err);
   });
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
 
 app.post("/signup", async (req, res) => {
   const usernameFound = await User.findOne({ username: req.body.username });
   const emailFound = await User.findOne({ email: req.body.email });
-  // Throw separate errors
-  if (usernameFound || emailFound) {
+  if (usernameFound) {
+    res.status(409).json({ error: "Username already exists." });
+  } else if (emailFound) {
+    res.status(409).json({ error: "Email already exists." });
   } else {
     const saltRounds = 9;
     const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
     req.body.password = hashedPassword;
     const user = new User(req.body);
     await user.save();
-    // Redirect to the client's page
-    // res.redirect("/home");
+    res.status(200).json({ sucess: "User has been added" });
   }
 });
