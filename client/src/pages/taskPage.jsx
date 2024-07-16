@@ -17,6 +17,22 @@ function TaskPage() {
     "November",
     "December",
   ];
+  // Gets the number of days in the month
+  // function NumberOfDays(year, month) {
+  // const date = new Date(year, month, 1);
+  // const days = [];
+  // date.setDate(date.getDate() + 31);
+  // console.log(date);
+
+  // while (date.getMonth() === month) {
+  // days.push(date.getDate());
+  // date.setDate(date.getDate() + 1);
+  // }
+  // return days;
+  // }
+  // const HowManyDays = NumberOfDays(date.getFullYear(), date.getMonth());
+
+  console.log(HowManyDays);
 
   return (
     <div>

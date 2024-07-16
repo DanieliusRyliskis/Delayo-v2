@@ -7,9 +7,9 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route index element={<TaskPage />} />
+          <Route index element={<SignupPage />} />
+          {/* <Route index element={<TaskPage />} /> */}
           <Route path="/home" element={<TaskPage />} />
-          <Route path="/signup" element={<SignupPage />} />
         </Routes>
       </BrowserRouter>
     </div>
