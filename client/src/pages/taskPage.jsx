@@ -37,46 +37,47 @@ function TaskPage() {
             months[date.getMonth()]
           } ${date.getFullYear()}`}</h1>
           <div>
-            <ul className="flex justify-center">
-              <li>
-                <h2>
-                  {date.getDate() - 3} <br />{" "}
-                  <span>{currentDay("subtract", 3)}</span>
+            <ul className="flex justify-center items-center overflow-hidden gap-1 py-1">
+              <li className="w-14 h-14 flex justify-center items-center rounded-md shadow- bg-primary shrink-0">
+                <h2 className="text-center text-sm leading-none">
+                  {currentDay("subtract", 3)}
+                  <br /> <span>{date.getDate() - 3}</span>
                 </h2>
               </li>
-              <li>
-                <h2>
-                  {date.getDate() - 2} <br />{" "}
-                  <span>{currentDay("subtract", 2)}</span>
+              <li className="w-14 h-14 flex justify-center items-center rounded-md shadow-md bg-primary shrink-0">
+                <h2 className="text-center text-sm leading-none">
+                  {currentDay("subtract", 2)}
+                  <br /> <span>{date.getDate() - 2}</span>
                 </h2>
               </li>
-              <li>
-                <h2>
-                  {date.getDate() - 1} <br />{" "}
-                  <span>{currentDay("subtract", 1)}</span>
+              <li className="w-14 h-14 flex justify-center items-center rounded-md shadow-md bg-primary shrink-0">
+                <h2 className="text-center text-sm leading-none">
+                  {currentDay("subtract", 1)}
+                  <br /> <span>{date.getDate() - 1}</span>
                 </h2>
               </li>
-              <li className="font-bold">
-                <h2>
-                  {date.getDate()} <br /> <span>{currentDay("add", 0)}</span>
+              <li className="w-16 h-16 flex justify-center items-center rounded-md shadow-md bg-primary shrink-0">
+                <h2 className="text-center text-sm leading-none">
+                  {currentDay("add", 0)}
+                  <br /> <span>{date.getDate()}</span>
                 </h2>
               </li>
-              <li>
-                <h2>
-                  {date.getDate() + 1} <br />{" "}
-                  <span>{currentDay("add", 1)}</span>
+              <li className="w-14 h-14 flex justify-center items-center rounded-md shadow-md bg-primary shrink-0">
+                <h2 className="text-center text-sm leading-none">
+                  {currentDay("add", 1)}
+                  <br /> <span>{date.getDate() + 1}</span>
                 </h2>
               </li>
-              <li>
-                <h2>
-                  {date.getDate() + 2} <br />{" "}
-                  <span>{currentDay("add", 2)}</span>
+              <li className="w-14 h-14 flex justify-center items-center rounded-md shadow-md bg-primary shrink-0">
+                <h2 className="text-center text-sm leading-none">
+                  {currentDay("add", 2)}
+                  <br /> <span>{date.getDate() + 2}</span>
                 </h2>
               </li>
-              <li>
-                <h2>
-                  {date.getDate() + 3} <br />{" "}
-                  <span>{currentDay("add", 3)}</span>
+              <li className="w-14 h-14 flex justify-center items-center rounded-md shadow-md bg-primary shrink-0">
+                <h2 className="text-center text-sm leading-none">
+                  {currentDay("add", 3)}
+                  <br /> <span>{date.getDate() + 3}</span>
                 </h2>
               </li>
             </ul>
