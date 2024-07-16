@@ -17,22 +17,16 @@ function TaskPage() {
     "November",
     "December",
   ];
-  // Gets the number of days in the month
-  // function NumberOfDays(year, month) {
-  // const date = new Date(year, month, 1);
-  // const days = [];
-  // date.setDate(date.getDate() + 31);
-  // console.log(date);
-
-  // while (date.getMonth() === month) {
-  // days.push(date.getDate());
-  // date.setDate(date.getDate() + 1);
-  // }
-  // return days;
-  // }
-  // const HowManyDays = NumberOfDays(date.getFullYear(), date.getMonth());
-
-  console.log(HowManyDays);
+  const currentDay = function (expression, index) {
+    const date = new Date();
+    const dayOfTheWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    if (expression === "subtract") {
+      date.setDate(date.getDate() - index);
+    } else if (expression === "add") {
+      date.setDate(date.getDate() + index);
+    }
+    return dayOfTheWeek[date.getDay()];
+  };
 
   return (
     <div>
@@ -42,6 +36,51 @@ function TaskPage() {
           <h1 className="text-center roboto-bold">{`${
             months[date.getMonth()]
           } ${date.getFullYear()}`}</h1>
+          <div>
+            <ul className="flex justify-center">
+              <li>
+                <h2>
+                  {date.getDate() - 3} <br />{" "}
+                  <span>{currentDay("subtract", 3)}</span>
+                </h2>
+              </li>
+              <li>
+                <h2>
+                  {date.getDate() - 2} <br />{" "}
+                  <span>{currentDay("subtract", 2)}</span>
+                </h2>
+              </li>
+              <li>
+                <h2>
+                  {date.getDate() - 1} <br />{" "}
+                  <span>{currentDay("subtract", 1)}</span>
+                </h2>
+              </li>
+              <li className="font-bold">
+                <h2>
+                  {date.getDate()} <br /> <span>{currentDay("add", 0)}</span>
+                </h2>
+              </li>
+              <li>
+                <h2>
+                  {date.getDate() + 1} <br />{" "}
+                  <span>{currentDay("add", 1)}</span>
+                </h2>
+              </li>
+              <li>
+                <h2>
+                  {date.getDate() + 2} <br />{" "}
+                  <span>{currentDay("add", 2)}</span>
+                </h2>
+              </li>
+              <li>
+                <h2>
+                  {date.getDate() + 3} <br />{" "}
+                  <span>{currentDay("add", 3)}</span>
+                </h2>
+              </li>
+            </ul>
+          </div>
         </section>
       </main>
       {/* <footer></footer> */}
