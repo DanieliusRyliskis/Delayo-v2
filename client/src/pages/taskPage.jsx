@@ -1,4 +1,5 @@
 import Header from "../components/header";
+import List from "../components/list";
 import { useEffect, useState } from "react";
 
 function TaskPage() {
@@ -105,6 +106,9 @@ function TaskPage() {
               </li>
             </ul>
           </div>
+        </section>
+        <section>
+          <List category={"Today’s schedule"} />
         </section>
       </main>
       {/* <footer></footer> */}
