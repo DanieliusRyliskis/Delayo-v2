@@ -10,7 +10,7 @@ function List(props) {
           <KebabMenu />
         </div>
       </div>
-      <div className="border-black border-dashed border-[1px] flex justify-center py-[0.125rem] rounded-sm mt-2 w-[96%] mx-auto">
+      <div className="border-black border-dashed border-[1px] flex justify-center py-[0.125rem] rounded-md mt-2 w-[96%] mx-auto">
         <div className=" cursor-pointer">
           <AddTask />
         </div>

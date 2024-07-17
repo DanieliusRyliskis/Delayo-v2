@@ -1,8 +1,15 @@
 import HamburgerMenu from "../assets/hamburgerMenu";
 import ModeToggle from "./modeToggle";
 import Login from "../assets/login";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
+
+  const account = function () {
+    navigate("/login");
+  };
+
   return (
     <header>
       <nav className="py-3">
@@ -13,7 +20,7 @@ function Header() {
           <li className="mr-2">
             <ModeToggle />
           </li>
-          <li className="mr-2 cursor-pointer">
+          <li className="mr-2 cursor-pointer" onClick={account}>
             <Login />
           </li>
         </ul>

@@ -36,11 +36,11 @@ function TaskPage() {
       <Header />
       <main>
         <section>
-          <h1 className="text-center roboto-bold">{`${
+          <h1 className="text-center roboto-bold mt-4">{`${
             months[date.getMonth()]
           } ${date.getFullYear()}`}</h1>
           <div>
-            <ul className="flex justify-center items-center overflow-hidden gap-1 py-1">
+            <ul className="flex justify-center items-center overflow-hidden gap-1 py-1 mt-3">
               <li
                 className="w-14 h-14 flex justify-center items-center rounded-md shadow- bg-primary shrink-0 cursor-pointer"
                 onClick={() => switchDay(-3)}
@@ -107,8 +107,16 @@ function TaskPage() {
             </ul>
           </div>
         </section>
-        <section>
-          <List category={"Today’s schedule"} />
+        <section className="mt-7 flex flex-wrap gap-7 justify-center">
+          <div>
+            <List category={"Today’s schedule"} />
+          </div>
+          <div>
+            <List category={"Extended tasks"} />
+          </div>
+          <div>
+            <List category={"Habits"} />
+          </div>
         </section>
       </main>
       {/* <footer></footer> */}
