@@ -1,8 +1,11 @@
 import Header from "../components/header";
+import { useEffect, useState } from "react";
 
 function TaskPage() {
-  // Object of dates and then render them all at once
+  const initDate = new Date();
+  const [selectedDate, setSelectedDate] = useState(initDate.getDate());
   const date = new Date();
+  date.setDate(selectedDate);
   const months = [
     "January",
     "February",
@@ -17,15 +20,14 @@ function TaskPage() {
     "November",
     "December",
   ];
-  const currentDay = function (expression, index) {
+  const currentDay = function (index) {
     const date = new Date();
     const dayOfTheWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    if (expression === "subtract") {
-      date.setDate(date.getDate() - index);
-    } else if (expression === "add") {
-      date.setDate(date.getDate() + index);
-    }
+    date.setDate(date.getDate() + index);
     return dayOfTheWeek[date.getDay()];
+  };
+  const switchDay = function (index) {
+    setSelectedDate((s) => s + index);
   };
 
   return (
@@ -38,46 +40,67 @@ function TaskPage() {
           } ${date.getFullYear()}`}</h1>
           <div>
             <ul className="flex justify-center items-center overflow-hidden gap-1 py-1">
-              <li className="w-14 h-14 flex justify-center items-center rounded-md shadow- bg-primary shrink-0">
+              <li
+                className="w-14 h-14 flex justify-center items-center rounded-md shadow- bg-primary shrink-0 cursor-pointer"
+                onClick={() => switchDay(-3)}
+              >
                 <h2 className="text-center text-sm leading-none">
-                  {currentDay("subtract", 3)}
-                  <br /> <span>{date.getDate() - 3}</span>
+                  {currentDay(-3)}
+                  <br /> <span className="font-bold">{date.getDate() - 3}</span>
                 </h2>
               </li>
-              <li className="w-14 h-14 flex justify-center items-center rounded-md shadow-md bg-primary shrink-0">
+              <li
+                className="w-14 h-14 flex justify-center items-center rounded-md shadow-md bg-primary shrink-0 cursor-pointer"
+                onClick={() => switchDay(-2)}
+              >
                 <h2 className="text-center text-sm leading-none">
-                  {currentDay("subtract", 2)}
-                  <br /> <span>{date.getDate() - 2}</span>
+                  {currentDay(-2)}
+                  <br /> <span className="font-bold">{date.getDate() - 2}</span>
                 </h2>
               </li>
-              <li className="w-14 h-14 flex justify-center items-center rounded-md shadow-md bg-primary shrink-0">
+              <li
+                className="w-14 h-14 flex justify-center items-center rounded-md shadow-md bg-primary shrink-0 cursor-pointer"
+                onClick={() => switchDay(-1)}
+              >
                 <h2 className="text-center text-sm leading-none">
-                  {currentDay("subtract", 1)}
-                  <br /> <span>{date.getDate() - 1}</span>
+                  {currentDay(-1)}
+                  <br /> <span className="font-bold">{date.getDate() - 1}</span>
                 </h2>
               </li>
-              <li className="w-16 h-16 flex justify-center items-center rounded-md shadow-md bg-primary shrink-0">
+              <li
+                className="w-16 h-16 flex justify-center items-center rounded-md shadow-md bg-primary shrink-0 cursor-pointer"
+                onClick={() => switchDay(0)}
+              >
                 <h2 className="text-center text-sm leading-none">
-                  {currentDay("add", 0)}
-                  <br /> <span>{date.getDate()}</span>
+                  {currentDay(0)}
+                  <br /> <span className="font-bold">{date.getDate()}</span>
                 </h2>
               </li>
-              <li className="w-14 h-14 flex justify-center items-center rounded-md shadow-md bg-primary shrink-0">
+              <li
+                className="w-14 h-14 flex justify-center items-center rounded-md shadow-md bg-primary shrink-0 cursor-pointer"
+                onClick={() => switchDay(1)}
+              >
                 <h2 className="text-center text-sm leading-none">
-                  {currentDay("add", 1)}
-                  <br /> <span>{date.getDate() + 1}</span>
+                  {currentDay(1)}
+                  <br /> <span className="font-bold">{date.getDate() + 1}</span>
                 </h2>
               </li>
-              <li className="w-14 h-14 flex justify-center items-center rounded-md shadow-md bg-primary shrink-0">
+              <li
+                className="w-14 h-14 flex justify-center items-center rounded-md shadow-md bg-primary shrink-0 cursor-pointer"
+                onClick={() => switchDay(2)}
+              >
                 <h2 className="text-center text-sm leading-none">
-                  {currentDay("add", 2)}
-                  <br /> <span>{date.getDate() + 2}</span>
+                  {currentDay(2)}
+                  <br /> <span className="font-bold">{date.getDate() + 2}</span>
                 </h2>
               </li>
-              <li className="w-14 h-14 flex justify-center items-center rounded-md shadow-md bg-primary shrink-0">
+              <li
+                className="w-14 h-14 flex justify-center items-center rounded-md shadow-md bg-primary shrink-0 cursor-pointer"
+                onClick={() => switchDay(3)}
+              >
                 <h2 className="text-center text-sm leading-none">
-                  {currentDay("add", 3)}
-                  <br /> <span>{date.getDate() + 3}</span>
+                  {currentDay(3)}
+                  <br /> <span className="font-bold">{date.getDate() + 3}</span>
                 </h2>
               </li>
             </ul>
