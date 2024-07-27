@@ -11,6 +11,7 @@ function LoginPage() {
   const [show, setShow] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (show) {
@@ -33,12 +34,8 @@ function LoginPage() {
 
   const submit = function (e) {
     e.preventDefault();
-    const form = { username, email, password, checked };
-    if (form.username === "" || form.username === " ") {
-      document.querySelector("h1").style.marginBottom = "2rem";
-      setErrorMessage("You must provide a username.");
-      setError(true);
-    } else if (form.email === "" || form.email === " ") {
+    const form = { email, password, checked };
+    if (form.email === "" || form.email === " ") {
       document.querySelector("h1").style.marginBottom = "2rem";
       setErrorMessage("You must provide an email.");
       setError(true);
@@ -46,14 +43,10 @@ function LoginPage() {
       document.querySelector("h1").style.marginBottom = "2rem";
       setErrorMessage("You must provide a password.");
       setError(true);
-    } else if (!form.checked) {
-      document.querySelector("h1").style.marginBottom = "2rem";
-      setErrorMessage("Please agree to the terms and conditions.");
-      setError(true);
     } else {
       const postRequest = async () => {
         try {
-          const res = await fetch("http://localhost:5000/signup", {
+          const res = await fetch("http://localhost:5000/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(form),

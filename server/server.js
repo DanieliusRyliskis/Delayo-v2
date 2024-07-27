@@ -36,3 +36,20 @@ app.post("/signup", async (req, res) => {
     res.status(200).json({ sucess: "User has been added" });
   }
 });
+
+app.post("/login", async (req, res) => {
+  const checkUser = await User.findOne({ email: req.body.email });
+  if (checkUser) {
+    const isPasswordMatch = await bcrypt.compare(
+      req.body.password,
+      checkUser.password
+    );
+    if (isPasswordMatch) {
+      res.status(200).json({ success: `${checkUser.username} has logged in` });
+    } else {
+      res.status(409).json({ error: "Invalid email or password." });
+    }
+  } else {
+    res.status(409).json({ error: "Invalid email or password." });
+  }
+});
