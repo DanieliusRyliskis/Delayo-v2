@@ -174,7 +174,7 @@ function SignupPage() {
         </form>
         <h2 className="text-gray-500 text-center my-6">
           Already have an account?{" "}
-          <a href="" className="text-primary">
+          <a href="/login" className="text-primary">
             Login
           </a>
         </h2>
