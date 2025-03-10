@@ -19,7 +19,7 @@ mongoose
 
 app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
-
+//
 app.post("/signup", async (req, res) => {
   const usernameFound = await User.findOne({ username: req.body.username });
   const emailFound = await User.findOne({ email: req.body.email });

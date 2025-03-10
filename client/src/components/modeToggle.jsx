@@ -12,29 +12,3 @@ function ModeToggle() {
 
 export default ModeToggle;
 
-// CSS
-
-// .toggle {
-//   position: relative;
-//   width: fit-content;
-//   height: fit-content;
-//   display: flex;
-// }
-// .toggle__b {
-//   width: 4.5rem;
-//   height: 2.1rem;
-//   border-radius: 4rem;
-//   display: inline-block;
-//   border: 1px solid black;
-//   background-color: #f0f0f0;
-// }
-// .toggle__c {
-//   position: absolute;
-//   width: 1.6rem;
-//   height: 1.6rem;
-//   border-radius: 50%;
-//   background-color: black;
-//   left: 0.22rem;
-//   top: 0.24rem;
-//   cursor: pointer;
-// }
