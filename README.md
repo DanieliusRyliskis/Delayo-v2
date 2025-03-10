@@ -6,7 +6,7 @@
 
 ### Key Features:
 
-RESTful API Design
-User Validation
-Password Salting and Hashing
-Database Integration
+- RESTful API Design
+- User Validation
+- Password Salting and Hashing
+- Database Integration
